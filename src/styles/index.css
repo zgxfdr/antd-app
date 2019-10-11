@@ -1,0 +1,21 @@
+body {
+  padding: 0px;
+  margin: 0px;
+}
+.mainDiv {
+  display: flex;
+  width: 100%;
+}
+.leftNav {
+  width: 220px !important;
+  height: 100%;
+  position: fixed;top:0;bottom:0;
+ 
+}
+.rightMain {
+  width:100%;
+  margin-left:220px;
+  padding:20px;
+  background-color: #fff;
+  font-size: 20px;
+}

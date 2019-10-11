@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { Link } from "react-router-dom";
 
 // function Welcome(props) {
 //   return <h1>Hello, {props.name}</h1>;
 // }
 function NumberList(props) {
-//  console.log(props.numbers)
-  const arr = [3, 2, 1,0];
+
+  const arr = [1, 2, 3];
   return (
     <ul>
       {
@@ -23,7 +23,13 @@ function NumberList(props) {
 class Welcome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date(), counter: 10 };
+    this.state = {
+      date: new Date(), counter: 10, list: [
+        { cid: 123, title: '技术胖的个人博客-1' },
+        { cid: 456, title: '技术胖的个人博客-2' },
+        { cid: 789, title: '技术胖的个人博客-3' },
+      ]
+    };
     this.addCount = this.addCount.bind(this);
   }
 
@@ -62,8 +68,18 @@ class Welcome extends React.Component {
     }
     return (
       <div>
+         <ul>
+            {
+                this.state.list.map((item,index)=>{
+                    return (
+                        <li key={index}> {item.title} </li>
+                    )
+                })
+            }
+        </ul>
+        
+        
         <NumberList numbers={this.props.numbers} />
-        <h1>Hello, world!</h1>
         {html}
         <ul>{listItems}</ul>
         <button onClick={this.addCount}>点击我+2</button>

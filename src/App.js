@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { Button,Breadcrumb } from 'antd';
-import Welcome from './component/Welcome.js' 
- 
+import React from 'react';
+import AppRouter from './AppRouter';
 import './App.css';
-function App() {
-  return (
-   <div>
-     <Welcome isLoggedIn="admin" increment="2" numbers="[3,2,1]"/>
-   </div>
-  );
+
+class App extends React.Component{
+  render(){
+      return(
+          <div id="app">   
+           <AppRouter/>
+          </div>              
+      )
+  }
 }
-
-
 
 export default App;
 
