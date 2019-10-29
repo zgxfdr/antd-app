@@ -20,6 +20,7 @@ class Home extends Component {
         super(props);
         this.state = {
             todoList: [],
+            todosList:[],
             dothings: "",
             chkStatusIndex: 0
         };
@@ -34,16 +35,18 @@ class Home extends Component {
         let dataList = Storage.get("todoList");
         if (dataList) {
             this.setState({
-                todoList: dataList
+                todoList: dataList,
+                todosList: dataList
             })
         }
     }
     changeCheck(e) {
         console.log(`checked = ${e.target.checked}`);
+        console.log(e);
     }
  
     // 添加list
-    addThings() {
+   async addThings() {
 
         if (this.state.dothings) {
 
@@ -51,19 +54,12 @@ class Home extends Component {
              // 本地存储
             Storage.set("todoList",dataList);
 
-            this.setState({
+          await  this.setState({
                 todoList:dataList,
+                todosList:dataList,
                 dothings: ""
             })
-            
-            console.log("第一个添加的值");
-            console.log(this.state.todoList);
-
-            this.setState((state)=>{
-                console.log(state);
-                state.todoList = dataList;
-            })
-
+      
 
             this.filterToDoList(this.state.chkStatusIndex);
             openNotificationWithIcon('success')
@@ -73,31 +69,21 @@ class Home extends Component {
     }
 
     // 筛选方法
-    filterToDoList(index) {
+    async  filterToDoList(index) {
+ 
         if (index === 0) {
-            this.setState(function (state, props) {
-                return {
-                    todoList: state.todoList
-                };
-            });
-
-        }
-        else if (index === 1) {
-            this.setState(function (state, props) {
-                console.log(state);
-                console.log(state.todoList.filter(item => item.checked === false))
-                return {
-                    todoList: state.todoList.filter(item => item.checked === false)
-                };
-            });
-
-
-        } else if (index === 2) {
-            let arr2 = this.state.todoList.filter(item => item.checked === true);
-            console.log(arr2);
-            this.setState({
-                todoList: arr2
+            await this.setState({
+                todosList:this.state.todoList
             })
+        }
+        else if (index === 1) {                                                                                                                                                                                                                                                                                                                                         
+           await this.setState({
+            todosList: this.state.todoList.filter(item => item.checked === false)
+            });
+        } else if (index === 2) {
+            await this.setState({
+                todosList: this.state.todoList.filter(item => item.checked === true)
+            });
         }
  
     }
@@ -142,8 +128,7 @@ class Home extends Component {
         this.setState({
             chkStatusIndex: index
         })
-        console.log(this.state.todoList);
-
+ 
         this.filterToDoList(index);
     }
     render() {
@@ -163,7 +148,7 @@ class Home extends Component {
                 <div style={{ background: '#ECECEC', padding: '30px', margin: '20px 0' }}>
 
                     <Card title="todolist" bordered={false} style={{ width: 300 }}>
-                        <TodoItem todoList={this.state.todoList} delItem={this.delItem.bind(this)} todoListBlur={this.todoListBlur.bind(this)}></TodoItem>
+                        <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} todoListBlur={this.todoListBlur.bind(this)}></TodoItem>
                         {/* {
                              this.state.todoList.map((item, index) => {
                                 return (
