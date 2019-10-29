@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Checkbox, Row, Col, Input, Button, notification, message } from 'antd';
+import TodoItem from './TodoItem.js';
+import Storage from '../model/storage.js';
+import { Card, Row, Col, Input, Button, notification, message } from 'antd';
 const footer = {
     borderTop: '1px solid #ddd'
 }
@@ -28,57 +30,40 @@ class Home extends Component {
 
 
     }
-    // componentDidMount() {
-    //     this.setState({
-    //         todoList: JSON.parse(localStorage.getItem("todoList")) || []
-    //     })
-
-    //     console.log(this.state.todoList)
-    //     if (this.state.todoList) {
-    //         this.setState({
-    //             todosList: this.state.todoList
-    //         })
-
-    //     }
-    // }
+    componentDidMount() {
+        let dataList = Storage.get("todoList");
+        if (dataList) {
+            this.setState({
+                todoList: dataList
+            })
+        }
+    }
     changeCheck(e) {
         console.log(`checked = ${e.target.checked}`);
     }
-
-    // 存储任务
-    saveTodoList() {
-        localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
-        this.setState({
-            todoList: JSON.parse(localStorage.getItem("todoList"))
-        })
-
-    }
+ 
     // 添加list
     addThings() {
 
         if (this.state.dothings) {
-            let a = [];
-            let b = [...a, { name: "wx", checked: false }];
-            console.log(b);
-            this.setState(function (state, props) {
+
+            let dataList = [...this.state.todoList,{name:this.state.dothings,checked:false}];
+             // 本地存储
+            Storage.set("todoList",dataList);
+
+            this.setState({
+                todoList:dataList,
+                dothings: ""
+            })
+            
+            console.log("第一个添加的值");
+            console.log(this.state.todoList);
+
+            this.setState((state)=>{
                 console.log(state);
-                return {
-                   todoList: [...state.todoList,state.dothings ],
-                 //    todoList:state.todoList.push({ name: state.dothings, checked: false }),
-                    dothings: ""
-                };
-            });
+                state.todoList = dataList;
+            })
 
-            setTimeout(() => {
-                console.log(this.state.todoList);
-                this.setState({
-
-                })
-            }, 1000);
-            // this.setState((prevState) => {
-            //     console.log(prevState);
-            //     return {todoList: prevState.todoList.push({name:this.state.dothings,checked:false})}
-            //   });
 
             this.filterToDoList(this.state.chkStatusIndex);
             openNotificationWithIcon('success')
@@ -114,12 +99,39 @@ class Home extends Component {
                 todoList: arr2
             })
         }
-
-
-        //  this.saveTodoList();
+ 
     }
 
-    changeValue(e) {
+    // 删除任务
+    delItem(index) {
+        let list = this.state.todoList;
+        list.splice(index,1);
+        console.log(list);
+        this.setState({
+            todoList:list
+        })
+         Storage.set("todoList",list);
+        this.filterToDoList(this.state.chkStatusIndex);
+    } 
+
+       // 编辑时失去焦点
+       todoListBlur(obj) {
+        const { $event, name, index } = obj;
+        if (this.isEdit) {
+          this.isEdit = !this.isEdit;
+        }
+        this.state.todoList.map(item => {
+          if (item.index === index) {
+            item.name = name;
+          }
+          return item;
+        });
+        this.filterToDoList(this.chkStatusIndex);
+      }
+ 
+
+
+    changeValue(e){
         this.setState({
             dothings: e.target.value
         })
@@ -130,6 +142,8 @@ class Home extends Component {
         this.setState({
             chkStatusIndex: index
         })
+        console.log(this.state.todoList);
+
         this.filterToDoList(index);
     }
     render() {
@@ -147,9 +161,10 @@ class Home extends Component {
                     </Row>
                 </div>
                 <div style={{ background: '#ECECEC', padding: '30px', margin: '20px 0' }}>
- 
+
                     <Card title="todolist" bordered={false} style={{ width: 300 }}>
-                        {
+                        <TodoItem todoList={this.state.todoList} delItem={this.delItem.bind(this)} todoListBlur={this.todoListBlur.bind(this)}></TodoItem>
+                        {/* {
                              this.state.todoList.map((item, index) => {
                                 return (
                                     <div key={index}>
@@ -159,7 +174,7 @@ class Home extends Component {
                                 )
                             })
 
-                        }
+                        } */}
                         <div className="footer">
                             <Row>
                                 <Col span={8}>   <Button type="default" onClick={() => { this.chkStatus(0) }}>doing</Button></Col>
