@@ -5,7 +5,7 @@ import { Card, Row, Col, Input, Button, Tabs,message } from 'antd';
 const { TabPane } = Tabs;
 
 // onChange事件传参  onChange={event=>{this.changeCheck(event,index)}}
-
+// 
 
  
 class Home extends Component {

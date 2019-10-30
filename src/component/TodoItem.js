@@ -24,7 +24,6 @@ class TodoItem extends Component {
 
     // 把props转为自己的state
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         this.setState({ someThings: nextProps.todoList });
     }
 
