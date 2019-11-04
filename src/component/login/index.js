@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom";
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import AppRouter from '../../AppRouter'
+import Storage from '../../model/storage'
 class RegistForm  extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = { isLogin:false };
     }
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-          
+            this.setState({
+              isLogin:true
+            })
+            
+            Storage.set("isLogin",true);
           }
         });
       };
 
     render() {
+      if(this.state.isLogin){
+       return <Router> <Redirect to="/Home"/><Route path="/Home" exact component={AppRouter}></Route>  </Router>
+      }
         const { getFieldDecorator } = this.props.form;
         return (
-            <Form onSubmit={this.handleSubmit} className="login-form">
+          <div className="login-box">
+          <h1 className="login-title">Welcome to my House</h1>
+<Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator('username', {
                 rules: [{ required: true, message: 'Please input your username!' }],
@@ -51,6 +61,8 @@ class RegistForm  extends Component {
               </Button>
             </Form.Item>
           </Form>
+          </div>
+         
         );
     }
     
