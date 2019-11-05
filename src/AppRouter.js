@@ -25,11 +25,11 @@ function AppRouter() {
                             </span>
                         }
                     >
-                         <Menu.Item key="1"><Link to="/">Jehadsama</Link> </Menu.Item>
+                        <Menu.Item key="1"><Link to="/View/TodoList">Jehadsama</Link> </Menu.Item>
                     </SubMenu>
                 </Menu>
                 <div className="rightMain">
-                    <Route path="/" exact component={TodoList} />
+                    <Route path="/View/TodoList" exact component={TodoList} />
                 </div>
             </div>
         </Router>
