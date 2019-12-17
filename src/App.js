@@ -1,30 +1,35 @@
-import React from 'react';
-<<<<<<< HEAD
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import './styles/index.css';
-import './App.css';
-import MyRoute from './router/index';
-class App extends React.Component {
+import Login from './component/login'
+import Storage from './model/storage'
+import { Menu, Icon } from 'antd';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+
+    if (Storage.get("isLogin")) {
+
+    }
+  }
+
   render() {
     return (
-      <div id="app">
-        <MyRoute />
-      </div>
-    )
-=======
-import Login from './component/login';
-import MyRouter from './router/index';
-import './App.css';
+      <Router>
 
-class App extends React.Component{
-  render(){
-      return(
-          <div id="app">   
-           <MyRouter/>
-          </div>              
-      )
->>>>>>> 515e792673db655a7dd5639252c410272d6ea39f
+        <div className="mainDiv" >
+          <Switch>
+            <Route path="/login" component={Login} />
+          </Switch>
+        </div>
+      </Router>
+    );
   }
 }
 
-export default App;
 
+
+export default App;

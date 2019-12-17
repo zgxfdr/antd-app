@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem.js';
 import Storage from '../model/storage.js';
-import { Card, Row, Col, Input, Button, Tabs,message } from 'antd';
+import { Card, Row, Col, Input, Button, Tabs, message } from 'antd';
 const { TabPane } = Tabs;
 
 // onChange事件传参  onChange={event=>{this.changeCheck(event,index)}}
 // 
 
- 
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +21,7 @@ class Home extends Component {
         this.changeValue = this.changeValue.bind(this);
         this.chkStatus = this.chkStatus.bind(this);
         this.chooseTab = this.chooseTab.bind(this);
-        
+
 
     }
     componentDidMount() {
@@ -73,11 +73,13 @@ class Home extends Component {
 
     }
 
+
+
     // 删除任务
     delItem(index) {
         let list = this.state.todoList;
         list.splice(index, 1);
-         
+
         this.setState({
             todoList: list
         })
@@ -102,17 +104,17 @@ class Home extends Component {
     }
 
     chooseTab(key) {
-        
-        if(key === 0){
+
+        if (key === 0) {
             this.chkStatus(0);
         }
-        else if(key === 1){
+        else if (key === 1) {
             this.chkStatus(1);
         }
-        else if(key === 2){
+        else if (key === 2) {
             this.chkStatus(2);
         }
-      }
+    }
     render() {
         return (
             <div className="todo-container">
@@ -129,13 +131,13 @@ class Home extends Component {
                     <Card title="My todoList" bordered={false} style={{ width: 500 }}>
                         <Tabs defaultActiveKey="1" onChange={this.chooseTab}>
                             <TabPane tab="Doing" key="1">
-                            <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
+                                <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
                             </TabPane>
                             <TabPane tab="Actived" key="2">
-                            <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
+                                <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
                             </TabPane>
                             <TabPane tab="Completed" key="3">
-                              <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
+                                <TodoItem todoList={this.state.todosList} delItem={this.delItem.bind(this)} ></TodoItem>
                             </TabPane>
                         </Tabs>
                     </Card>
