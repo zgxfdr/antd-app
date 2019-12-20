@@ -1,23 +1,23 @@
-import React,{Component} from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './styles/index.css';
-import TodoList from './component/TodoList'
-import Welcome from './component/Welcome'
-import Storage from './model/storage'
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import '../../styles/index.css';
+import TodoList from '../../component/TodoList/TodoList'
+import Echarts from '../../component/Echarts'
+import Storage from '../../model/storage'
 import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
-class AppRouter extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = {};
     }
-    componentDidMount(){
-     
-           if(Storage.get("isLogin")){
-             
-           }
+    componentDidMount() {
+
+        if (Storage.get("isLogin")) {
+
+        }
     }
-     
+
     render() {
         return (
             <Router>
@@ -35,23 +35,22 @@ class AppRouter extends Component {
                                 title={
                                     <span>
                                         <Icon type="appstore" />
-                                        <span>TodoList</span>
+                                        <span>Home</span>
                                     </span>
                                 }
                             >
-                                <Menu.Item key="1"><Link to="/Home">todoList</Link> </Menu.Item>
-                                <Menu.Item key="2"><Link to="/welcome/123">welcome</Link> </Menu.Item>
+                                <Menu.Item key="1"><Link to="/">todoList</Link> </Menu.Item>
+                                <Menu.Item key="2"><Link to="/echart">echart</Link> </Menu.Item>
                             </SubMenu>
-                            {/* <div className="menu-bottom">
-                                <Link to="/">退出登录</Link>
-                            </div> */}
                         </Menu>
-    
+
                     </div>
                     <div className="rightMain">
-                        <Route path="/Home" exact component={TodoList} />
-                        <Route path="/welcome/:id"  component={Welcome} />
-                     
+                        <Switch>
+                            <Route path="/" exact component={TodoList} />
+                            <Route path="/echart" exact component={Echarts} />
+                        </Switch>
+
                     </div>
                 </div>
             </Router>
@@ -59,6 +58,6 @@ class AppRouter extends Component {
     }
 }
 
- 
 
-export default AppRouter;
+
+export default App;

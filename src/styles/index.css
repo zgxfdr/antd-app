@@ -43,13 +43,15 @@ body {
   background-color: #dcdcdc;
 }
 .todo-container {
-  background: #ECECEC;
   padding: 30px;
 }
 .todo-container .ant-tabs-content {
   height: 240px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+.todo-container .ant-card {
+  border: 1px solid #f1f1f1;
 }
 .todo-container .ant-card-body {
   padding: 0 20px;
@@ -99,4 +101,21 @@ body {
 }
 .login-box .login-form-button {
   width: 100%;
+}
+.statusTab {
+  list-style-type: none;
+  margin: 0;
+  margin-bottom: 30px;
+  display: flex;
+  height: 45px;
+  line-height: 45px;
+}
+.statusTab li {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
+}
+.statusTab li.isactive {
+  color: #1DA57A;
+  border-bottom: 3px solid #1DA57A;
 }

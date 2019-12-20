@@ -1,13 +1,15 @@
 import React from "react";
 import Login from '../component/login'
-import TodoList from '../component/TodoList'
+import TodoList from '../component/todoList/TodoList'
 import Welcome from '../component/Welcome'
 import AppRouter from '../AppRouter'
+import NotFound from '../component/NotFound'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 // Some folks find value in a centralized route config.
@@ -18,48 +20,64 @@ import {
 // with `path` and `component` props, ordered the same
 // way you'd do inside a `<Switch>`.
 const routes = [
-    {
-        path: "/login",
-        component: Login
-      },
-//   {
-//     path: "/Home",
-//     component: TodoList
-//   },
   {
-    path: "/Home",
+    path: "/login",
+    name: "Login",
+    component: Login,
+    auth: true
+  },
+
+  {
+    path: "/",
     component: AppRouter,
     routes: [
       {
-        path: "/Home/TodoList",
-        component: TodoList
+        path: "/TodoList",
+        name: "TodoList",
+        component: TodoList,
+        auth: true
       },
       {
-        path: "/Home/Welcome",
-        component: Welcome
+        path: "/Welcome",
+        name: "Welcome",
+        component: Welcome,
+        auth: true
       }
     ]
   }
 ];
 
-export default function RouteConfigExample() {
+
+export default function RouteConfigExample(props) {
+  let token = true;
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">login</Link>
-          </li>
-        </ul>
+        <Route exact path="/" render={() => <Redirect to="/welcome" component={Welcome} />} />
 
         <Switch>
+          <Route exact path="/" component={TodoList} />
+          <Route path="/login" component={Login} />
+          <Redirect path="/welcome" to="/" />
+        </Switch>
+
+        {/* <Switch>
+          {routes.map((item, index) => {
+            return <Route key={index} path={item.path} exact render={props =>
+              (!item.auth ? (<item.component {...props} />) : (token ? <item.component {...props} /> : <Redirect to={{
+                pathname: '/login',
+                state: { from: props.location }
+              }} />)
+              )} />
+          })}
+          <Route component={NotFound} />
+        </Switch> */}
+
+        {/* <Switch>
           {routes.map((route, i) => (
             <RouteWithSubRoutes key={i} {...route} />
           ))}
-        </Switch>
+        </Switch> */}
       </div>
     </Router>
   );
@@ -80,4 +98,3 @@ function RouteWithSubRoutes(route) {
   );
 }
 
- 

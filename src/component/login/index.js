@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link,Redirect } from "react-router-dom";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import AppRouter from '../../AppRouter'
+import { Form, Icon, Input, Button, Checkbox } from 'antd'; 
+import Home from '../../views/Home'
 import Storage from '../../model/storage'
 class RegistForm  extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class RegistForm  extends Component {
 
     render() {
       if(this.state.isLogin){
-       return <Router> <Redirect to="/Home"/><Route path="/Home" exact component={AppRouter}></Route>  </Router>
+        return <Router> <Redirect to="/" /><Route path="/" exact component={Home}></Route>  </Router>
       }
         const { getFieldDecorator } = this.props.form;
         return (
