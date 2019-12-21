@@ -197,8 +197,17 @@ class TodoList extends Component {
         message.error('取消删除');
     }
     render() {
+        const arr = [1,2,3];
         return (
             <div className="todo-container">
+                 <ul>
+               {
+                    
+                     arr.map((item,index)=>{
+                      return  <li key={index}>{item}</li>    
+                     })
+               }
+               </ul>
                 <Row gutter={15} style={{ width: 500 }}>
                     <Col span={20}>
                         <Input type="text" placeholder="Do what you need to do !" name="dothings"
@@ -218,7 +227,7 @@ class TodoList extends Component {
                         <div>
                         {
                                     this.state.todosList.map((item, index) => {
-                                        return <TodoItem key={index} changeItemValue={(e) => { this.changeItemValue(e, index) }} editItem={() => { this.editItem(index) }} todoListBlur1={(e) => { this.todoListBlur1(e, index, item.name) }} todoListBlur2={(e) => { this.todoListBlur2(e, index, item.name) }} editIndex={this.state.editIndex} isEdit={this.state.isEdit} confirm={(e) => { this.confirm(e, index) }} changeCheck={(e) => { this.changeCheck(e, index) }} cancle={this.cancle} todoList={item} indexItem={index} ></TodoItem>
+                                        return <TodoItem  key={index} changeItemValue={(e) => { this.changeItemValue(e, index) }} editItem={() => { this.editItem(index) }} todoListBlur1={(e) => { this.todoListBlur1(e, index, item.name) }} todoListBlur2={(e) => { this.todoListBlur2(e, index, item.name) }} editIndex={this.state.editIndex} isEdit={this.state.isEdit} confirm={(e) => { this.confirm(e, index) }} changeCheck={(e) => { this.changeCheck(e, index) }} cancle={this.cancle} todoList={item} indexItem={index} ></TodoItem>
                                     })
                                 }
                         </div>

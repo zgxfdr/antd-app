@@ -1,0 +1,10 @@
+.comment-container {
+  width: 50%;
+  margin: 50px auto;
+}
+.comment-container .comment-list {
+  border: 1px solid #ddd;
+}
+.comment-container .comment-input-container div {
+  margin-bottom: 10px;
+}

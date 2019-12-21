@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import './styles/index.css';
+import './styles/base.css';
 import Login from './component/Login'
 import Storage from './model/storage'
 import { Menu, Icon } from 'antd';

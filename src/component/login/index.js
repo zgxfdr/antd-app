@@ -23,7 +23,7 @@ class RegistForm  extends Component {
 
     render() {
       if(this.state.isLogin){
-        return <Router> <Redirect to="/" /><Route path="/" exact component={Home}></Route>  </Router>
+        return <Router> <Redirect to="/todolist" /><Route path="/todolist" exact component={Home}></Route>  </Router>
       }
         const { getFieldDecorator } = this.props.form;
         return (

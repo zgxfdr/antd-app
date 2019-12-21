@@ -1,11 +1,13 @@
-import React, { Component } from './node_modules/react';
-import '../../styles/index.css';
-import { Checkbox, Row, Col, Input, Icon, Popconfirm, message, Result } from './node_modules/antd';
+import React, { Component } from 'react';
+import '../../styles/base.css';
+import { Checkbox, Row, Col, Input, Icon, Popconfirm, message, Result } from 'antd';
 export default function TodoItem(props) {
     const item = props.todoList;
     const index = props.indexItem;
+    
     return (
         <div>
+          
             <Row gutter={15} key={index} style={{ marginBottom: '15px' }}>
                 <Col span={2}>
                     <Checkbox checked={item.checked} onChange={event => { props.changeCheck(event, index) }}></Checkbox>
