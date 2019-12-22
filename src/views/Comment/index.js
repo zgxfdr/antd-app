@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './index.css'
-import CommentInput from '../../component/Comment/CommentInput'
-import CommentList from '../../component/Comment/CommentList'
+import CommentInput from '../../components/Comment/CommentInput'
+import CommentList from '../../components/Comment/CommentList'
 
 class Comment extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = {};
     }
     render() {
         return (
             <div className="comment-container">
-                <CommentInput/>
-                <CommentList/>
+                <CommentInput />
+                <CommentList />
             </div>
         );
     }

@@ -1,27 +1,26 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import './index.css'
-import TodoList from '../../component/TodoList/TodoList'
-import Echarts from '../../component/Echarts'
+import TodoList from '../../views/TodoList'
+import Echarts from '../../components/Echarts'
+import Login from '../../views/Login'
 import Comment from '../Comment/index.js'
 import Storage from '../../model/storage'
+import router from '../../router'
 import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { isLogin: false };
     }
-    componentDidMount() {
 
-        if (Storage.get("isLogin")) {
-
-        }
-    }
 
     render() {
-        return (
-            <Router>
+        let html;
+        if (Storage.get("isLogin")) {
+            html = (
+
                 <div className="mainDiv" >
                     <div>
                         <Menu
@@ -31,6 +30,23 @@ class App extends Component {
                             defaultOpenKeys={['sub1']}
                             mode="inline"
                         >
+                            {
+                                router.map((item, index) => {
+                                    return (
+                                        <Menu.Item key={index}>
+                                            <Link to={item.path}>{item.title}</Link>
+                                        </Menu.Item>)
+                                })
+                            }
+                        </Menu>
+                        {/* <Menu
+                            className="leftNav"
+                            style={{ width: 256 }}
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                        >
+
                             <SubMenu
                                 key="sub1"
                                 title={
@@ -44,10 +60,16 @@ class App extends Component {
                                 <Menu.Item key="2"><Link to="/echart">echart</Link> </Menu.Item>
                                 <Menu.Item key="3"><Link to="/comment">comment</Link> </Menu.Item>
                             </SubMenu>
-                        </Menu>
+                        </Menu> */}
 
                     </div>
                     <div className="rightMain">
+                        {
+                            router.map((route, index) => {
+                                // return (<Route key={index} exact={item.exact} path={item.path} component={item.component} />)
+                                return <Route key={index} path={route.path} />
+                            })
+                        }
                         <Switch>
                             <Route path="/todolist" exact component={TodoList} />
                             <Route path="/echart" exact component={Echarts} />
@@ -56,6 +78,23 @@ class App extends Component {
 
                     </div>
                 </div>
+
+
+            )
+        } else {
+            html = (
+
+                <div>
+                    <Redirect to="/login" />
+                    <Switch><Route path="/login" exact component={Login} /></Switch>
+                </div>
+
+            )
+        }
+        return (
+
+            <Router>
+                {html}
             </Router>
         );
     }
