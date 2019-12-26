@@ -1,0 +1,24 @@
+.record-container {
+  margin: 20px;
+}
+.record-container .form-box {
+  display: flex;
+  margin-bottom: 20px;
+}
+.record-container .form-box .item {
+  margin-right: 15px;
+}
+.record-container .no-edit {
+  border: 0 !important;
+  outline: 0 !important;
+  background: #fff;
+}
+.record-container .no-edit .ant-input-disabled {
+  background: #fff !important;
+  cursor: auto;
+  color: #000;
+  border: 0;
+}
+.record-container .no-edit i {
+  display: none;
+}

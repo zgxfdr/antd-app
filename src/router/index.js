@@ -1,7 +1,7 @@
 import TodoList from '../views/TodoList'
 import Login from '../views/Login'
 import Echarts from '../components/Echarts'
-import Comment from '../views/Comment'
+import Record from '../views/Record'
 const router = [
     {
         path: '/',
@@ -16,9 +16,9 @@ const router = [
         exact: true
     },
     {
-        path: '/comment',
-        title: "comment",
-        component: Comment,
+        path: '/record',
+        title: "record",
+        component: Record,
         exact: true
     }
 ]

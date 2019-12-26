@@ -1,0 +1,30 @@
+{
+  "records": [
+    {
+      "id": 2,
+      "date": "2019-12-22",
+      "title": "水果",
+      "amount": -40
+    },
+    {
+      "id": 3,
+      "date": "2019-12-24",
+      "title": "收入",
+      "amount": 500
+    },
+    {
+      "id": 4,
+      "isreadyonly": false,
+      "title": "汉堡",
+      "date": "2019-12-04",
+      "amount": "-15"
+    },
+    {
+      "id": 5,
+      "isreadyonly": false,
+      "date": "2019-12-12",
+      "title": "shu23",
+      "amount": "-10"
+    }
+  ]
+}

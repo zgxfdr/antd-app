@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
-import './styles/base.css';
+import './styles/base.css'; 
 import Login from './views/Login'
 import Storage from './model/storage'
-import { Menu, Icon } from 'antd';
-import TodoList from "./views/TodoList";
+import { Menu, Icon } from 'antd'; 
 import Home from "./views/Home";
 class App extends Component {
   constructor(props) {
@@ -12,8 +11,6 @@ class App extends Component {
     this.state = { isLogin: false };
   }
   componentDidMount() {
-    console.log("---")
-    console.log(Storage.get("isLogin"));
     if (Storage.get("isLogin")) {
       this.setState({
 
@@ -36,6 +33,7 @@ class App extends Component {
     // }
 
     return (
+      
       <Router>
         <div>
           <Switch>

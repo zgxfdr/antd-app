@@ -44,6 +44,7 @@ class TodoList extends Component {
     }
 
     changeItemValue(e, index) {
+        console.log(e);
         let dataList = this.state.todoList;
         dataList[index].name = e.target.value;
         this.setState({
