@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from '../../components/Record/List'
+import Hoc from '../../views/Hoc'
 import FetchRequest from '../../utils/request';
 import './index.css'
 import { Row, Col, Card,Input,Button,DatePicker   } from 'antd';
@@ -50,10 +51,10 @@ class Record extends Component {
 
         this.state.records.map((item)=>{
              if(item.amount){
-                if(parseInt(item.amount) > 0){
-                    income+=parseInt(item.amount);
+                if(parseFloat(item.amount) > 0){
+                    income+=parseFloat(item.amount);
                 }else{
-                    expenditure+=parseInt(item.amount);
+                    expenditure+=parseFloat(item.amount);
                 }
              }
            
@@ -114,7 +115,9 @@ class Record extends Component {
             console.log("add success");
             this.getPage();
             this.form={date:"",title:"",amount:""};
-
+            this.setState({
+                form:form
+            })
         });
        
     }
