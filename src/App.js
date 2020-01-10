@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
-import './styles/base.css'; 
+import './styles/base.css';
 import Login from './views/Login'
 import Storage from './model/storage'
-import { Menu, Icon } from 'antd'; 
+import { Menu, Icon } from 'antd';
 import Home from "./views/Home";
+import Count from "./views/Record/Count.js";
+import { Provider } from 'react-redux';
+import store from './reducers/store'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -33,13 +37,12 @@ class App extends Component {
     // }
 
     return (
-      
+
       <Router>
         <div>
           <Switch>
-
             <Route path="/login" component={Login} />
-            <Home />
+            <Provider store={store}><Count /></Provider>
           </Switch>
         </div>
       </Router>

@@ -1,8 +1,24 @@
+// import React from 'react'
+// import ReactDOM from 'react-dom'
+// import { createStore } from 'redux'
+// import { Provider } from 'react-redux'
+// import CommentApp from './views/CommentApp'
+// import commentsReducer from './reducers/comments'
+ 
+
+// const store = createStore(commentsReducer)
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <CommentApp />
+//   </Provider>,
+//   document.getElementById('root')
+// );
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './styles/base.css'
-import App from './App';
+import App from './App'; 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

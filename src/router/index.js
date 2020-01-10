@@ -5,7 +5,7 @@ import Record from '../views/Record'
 import Hoc from '../views/Hoc'
 const router = [
     {
-        path: '/',
+        path: '/todolist',
         title: "todolist",
         component: TodoList,
         exact: true
