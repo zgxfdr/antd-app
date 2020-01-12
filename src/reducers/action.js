@@ -7,7 +7,7 @@ export const addRecordsAsync = (records) => {
   return dispatch => {
     FetchRequest.post('http://localhost:3004/records', records).then(res => {
       console.log("add success");
-
+      console.log(records);
       dispatch(addRecords(records))
     });
   }

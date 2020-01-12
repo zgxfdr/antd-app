@@ -3,6 +3,7 @@ import List from '../../components/Record/List'
 // import Hoc from '../../views/Hoc'
 import FetchRequest from '../../utils/request';
 import PropTypes from 'prop-types'
+import store from '../../reducers/store'
 import './index.css'
 import { Row, Col, Card, Input, Button, DatePicker } from 'antd';
 class Record extends Component {
@@ -14,20 +15,21 @@ class Record extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            income: "",// 收入
-            expenditure: "",// 支出
-            balance: "",// 结余  
-            form: {
-                title: "",
-                amount: "",
-                date: ""
-            }
-        };
+
+        this.state = store.getState();
+        console.log(this.state)
+        this.storeChange = this.storeChange.bind(this)  //转变this指向
+        store.subscribe(this.storeChange) //订阅Redux的状态
+
 
 
     }
-    componentWillMount() {
+    storeChange() {
+        this.setState(store.getState())
+        this.getCounts();
+    }
+
+    UNSAFE_componentWillMount() {
         this.getPage();
     }
 
@@ -46,7 +48,7 @@ class Record extends Component {
         let expenditure = 0;
 
 
-        this.props.records.map((item) => {
+        this.state.records.map((item) => {
             if (item.amount) {
                 if (parseFloat(item.amount) > 0) {
                     income += parseFloat(item.amount);
@@ -104,6 +106,8 @@ class Record extends Component {
         let form = this.state.form;
         form.id = this.props.records.length + 1;
         await this.props.addRecordsAsync(form);
+
+
     }
     pickerChange(date, dateString) {
         this.setState({
@@ -163,7 +167,7 @@ class Record extends Component {
     }
 
     render() {
-        const { records } = this.props;
+        console.log(this.state)
         return (
             <div className="record-container">
 
@@ -202,7 +206,7 @@ class Record extends Component {
 
                     <tbody >
                         {
-                            records && records.map((record, i) => {
+                            this.state.records && this.state.records.map((record, i) => {
                                 return <List blurEdit={this.blurEdit.bind(this)} pickerChange={this.pickerChange1.bind(this)} titleChange={this.titleChange1.bind(this)} amountChange={this.amountChange1.bind(this)} record={record} key={i} index={i} editItem={this.editItem.bind(this)} delItem={this.delItem.bind(this)} />
                             })
                         }

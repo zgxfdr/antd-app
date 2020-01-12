@@ -17,7 +17,7 @@ import { records } from './record'
 
 const store = createStore(
   records,
-  applyMiddleware(thunk) // 使用中间件
+  applyMiddleware(thunk), // 使用中间件
 )
 
 export default store;

@@ -1,65 +1,29 @@
 {
   "records": [
     {
-      "date": "2020-01-07",
-      "title": "早餐",
-      "amount": "-4",
+      "date": "2020-01-12",
+      "title": "吃饭",
+      "amount": "-150",
       "id": 1,
-      "isreadyonly": false
+      "isreadyonly": true
     },
     {
-      "date": "2020-01-09",
+      "date": "2020-01-12",
       "title": "收入",
-      "amount": "100",
+      "amount": "50",
       "id": 2
     },
     {
-      "date": "2020-01-10",
-      "title": "1",
-      "amount": "1",
+      "date": "2020-01-16",
+      "title": "玩",
+      "amount": "100",
       "id": 3
     },
     {
-      "date": "2020-01-10",
-      "title": "123",
-      "amount": "2",
+      "date": "2020-01-18",
+      "title": "高铁票",
+      "amount": "-117",
       "id": 4
-    },
-    {
-      "date": "2020-01-03",
-      "title": "1",
-      "amount": "1",
-      "id": 5
-    },
-    {
-      "date": "2020-01-03",
-      "title": "123",
-      "amount": "1",
-      "id": 6
-    },
-    {
-      "date": "2020-01-16",
-      "title": "123",
-      "amount": "123",
-      "id": 7
-    },
-    {
-      "date": "2020-01-03",
-      "title": "123",
-      "amount": "123",
-      "id": 8
-    },
-    {
-      "date": "2020-01-10",
-      "title": "1",
-      "amount": "1",
-      "id": 9
-    },
-    {
-      "title": "",
-      "amount": "",
-      "date": "",
-      "id": 10
     }
   ]
 }
