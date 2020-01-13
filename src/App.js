@@ -5,7 +5,8 @@ import Login from './views/Login'
 import Storage from './model/storage'
 import { Menu, Icon } from 'antd';
 import Home from "./views/Home";
-import Count from "./views/Record/Count.js";
+import RecordConnect from "./views/Record/connect";
+import CommentList from "./views/CommentList";
 import { Provider } from 'react-redux';
 import store from './reducers/store'
 
@@ -42,7 +43,9 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/login" component={Login} />
-            <Provider store={store}><Count /></Provider>
+            {/* Provider是一个提供器，只要使用了这个组件，组件里边的其它所有组件都可以使用store了，这也是React-redux的核心组件了 */}
+            <Provider store={store}><RecordConnect /></Provider>  
+            
           </Switch>
         </div>
       </Router>

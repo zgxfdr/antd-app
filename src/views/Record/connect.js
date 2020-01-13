@@ -1,4 +1,4 @@
-import { addRecordsAsync, initRecordsAsync } from "../../reducers/action.js";
+import { addRecordsAsync, initRecordsAsync,delRecordsAsync,editRecordsAsync } from "../../reducers/action.js";
 
 import { connect } from "react-redux";
 
@@ -15,7 +15,9 @@ const mapStateToProps = (state) => {
 // mapDispatchToProps 告诉connect 需要如何触发 dispatch
 const mapDispatchToProps = {
   addRecordsAsync,
-  initRecordsAsync
+  initRecordsAsync,
+  delRecordsAsync,
+  editRecordsAsync
 }
 
 // connect   接受一个参数 mapStateToProps，然后返回一个函数，这个返回的函数才是高阶组件
@@ -24,5 +26,3 @@ export default connect(
   mapStateToProps,  // 这个必须是函数
   mapDispatchToProps// 这是个对象 
 )(Record)  
-
-

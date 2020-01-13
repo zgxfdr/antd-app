@@ -18,6 +18,6 @@ export const editRecords = (records) => {
 }
 
 
-export const deleteRecords = (recordsIndex) => {
-    return { type: DEL_RECOED, recordsIndex }
+export const delRecords = (index) => {
+    return { type: DEL_RECOED, index }
 }

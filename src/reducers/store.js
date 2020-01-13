@@ -11,12 +11,12 @@ import thunk from 'redux-thunk'
 
 // 引入reducer,因为当前只有一个函数,先采用解构方法引入
 
-import { records } from './record'
+import { reducer } from './reducer'
 
 // 将 reducer作为参数 传入 createStore()方法
 
 const store = createStore(
-  records,
+  reducer,
   applyMiddleware(thunk) // 使用中间件
 )
 

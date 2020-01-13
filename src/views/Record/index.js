@@ -3,41 +3,41 @@ import List from '../../components/Record/List'
 // import Hoc from '../../views/Hoc'
 import FetchRequest from '../../utils/request';
 import PropTypes from 'prop-types'
+import store from '../../reducers/store'
 import './index.css'
 import { Row, Col, Card, Input, Button, DatePicker } from 'antd';
 class Record extends Component {
     static propTypes = {
         records: PropTypes.array,
         addRecordsAsync: PropTypes.func.isRequired,
-        initRecordsAsync: PropTypes.func.isRequired
+        initRecordsAsync: PropTypes.func.isRequired,
+        delRecordsAsync: PropTypes.func 
     }
 
     constructor(props) {
         super(props);
-        this.state = {
-            income: "",// 收入
-            expenditure: "",// 支出
-            balance: "",// 结余  
-            form: {
-                title: "",
-                amount: "",
-                date: ""
-            }
-        };
+
+        this.state = store.getState();
+        console.log(this.state)
+        this.storeChange = this.storeChange.bind(this)  //转变this指向
+        store.subscribe(this.storeChange) //订阅Redux的状态
+
 
 
     }
-    componentWillMount() {
+    storeChange() {
+        this.setState(store.getState())
+        this.getCounts();
+    }
+
+    UNSAFE_componentWillMount() {
         this.getPage();
     }
 
     // 获取列表
     async  getPage() {
         await this.props.initRecordsAsync();
-        setTimeout(() => {
-            this.getCounts();
-        }, 1000)
-
+        
     }
 
     // 计算
@@ -46,7 +46,7 @@ class Record extends Component {
         let expenditure = 0;
 
 
-        this.props.records.map((item) => {
+        this.state.records.map((item) => {
             if (item.amount) {
                 if (parseFloat(item.amount) > 0) {
                     income += parseFloat(item.amount);
@@ -73,28 +73,15 @@ class Record extends Component {
     }
 
     // 删除
-    delItem(index) {
+      delItem(index,id) {
 
-        let id = this.state.records[index].id;
-
-        FetchRequest.del(`http://localhost:3004/records/${id}`).then(res => {
-            console.log("del success");
-            this.getPage();
-            this.getCounts();
-
-        });
+        this.props.delRecordsAsync(index,id);
     }
     // 失去焦点
     blurEdit(index) {
         let blureditId = this.state.records[index].id;
-        console.log(this.state.records[index]);
-
-        FetchRequest.put(`http://localhost:3004/records/${blureditId}`, this.state.records[index]).then(res => {
-            console.log("put success");
-            this.getPage();
-            this.getCounts();
-
-        });
+        let newState = this.state.records[index];
+        this.props.editRecordsAsync(index,blureditId,newState);
     }
 
 
@@ -103,7 +90,10 @@ class Record extends Component {
     async addAmount() {
         let form = this.state.form;
         form.id = this.props.records.length + 1;
+        form.isreadyonly=true;
         await this.props.addRecordsAsync(form);
+
+
     }
     pickerChange(date, dateString) {
         this.setState({
@@ -163,7 +153,6 @@ class Record extends Component {
     }
 
     render() {
-        const { records } = this.props;
         return (
             <div className="record-container">
 
@@ -202,8 +191,8 @@ class Record extends Component {
 
                     <tbody >
                         {
-                            records && records.map((record, i) => {
-                                return <List blurEdit={this.blurEdit.bind(this)} pickerChange={this.pickerChange1.bind(this)} titleChange={this.titleChange1.bind(this)} amountChange={this.amountChange1.bind(this)} record={record} key={i} index={i} editItem={this.editItem.bind(this)} delItem={this.delItem.bind(this)} />
+                            this.state.records && this.state.records.map((record, i) => {
+                                return <List blurEdit={this.blurEdit.bind(this)} pickerChange={this.pickerChange1.bind(this)} titleChange={this.titleChange1.bind(this)} amountChange={this.amountChange1.bind(this)} record={record} key={i} index={i} editItem={this.editItem.bind(this)} delItem={this.delItem.bind(this,i,record.id)} />
                             })
                         }
                     </tbody>
