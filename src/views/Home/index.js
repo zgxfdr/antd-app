@@ -5,7 +5,7 @@ import TodoList from '../../views/TodoList'
 import Echarts from '../../components/Echarts'
 import Login from '../../views/Login'
 import Record from '../../views/Record'
-import Hoc from '../../views/Hoc'
+import HookTest from '../HookTest/index'
 import Storage from '../../model/storage'
 import router from '../../router'
 import { Menu, Icon } from 'antd';
@@ -51,8 +51,8 @@ class App extends Component {
                         <Switch>
                             <Route path="/todolist" exact component={TodoList} />
                             <Route path="/echart" exact component={Echarts} />
-                            <Route path="/record" exact component={Record} />
-                            <Route path="/Hoc" exact component={Hoc} />
+                            {/* <Route path="/record" exact component={Record} /> */}
+                            <Route path="/HookTest" exact component={HookTest} />
                         </Switch>
 
                     </div>
