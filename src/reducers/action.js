@@ -7,6 +7,7 @@ import FetchRequest from '../utils/request';
 // 新增
 export const addRecordsAsync = (records) => {
   return dispatch => {
+<<<<<<< HEAD
     axios.post('http://localhost:3004/records',records).then((res)=>{
           console.log("add success");
           dispatch(addRecords(records))
@@ -16,6 +17,13 @@ export const addRecordsAsync = (records) => {
     //   console.log("add success");
     //   dispatch(addRecords(records))
     // });
+=======
+    FetchRequest.post('http://localhost:3004/records', records).then(res => {
+      console.log("add success");
+      console.log(records);
+      dispatch(addRecords(records))
+    });
+>>>>>>> 309521e0a337b7e732b389ff9f3de50faf16e7c7
   }
 }
 

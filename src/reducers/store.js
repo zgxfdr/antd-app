@@ -16,8 +16,13 @@ import { reducer } from './reducer'
 // 将 reducer作为参数 传入 createStore()方法
 
 const store = createStore(
+<<<<<<< HEAD
   reducer,
   applyMiddleware(thunk) // 使用中间件
+=======
+  records,
+  applyMiddleware(thunk), // 使用中间件
+>>>>>>> 309521e0a337b7e732b389ff9f3de50faf16e7c7
 )
 
 export default store;

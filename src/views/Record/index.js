@@ -153,6 +153,10 @@ class Record extends Component {
     }
 
     render() {
+<<<<<<< HEAD
+=======
+        console.log(this.state)
+>>>>>>> 309521e0a337b7e732b389ff9f3de50faf16e7c7
         return (
             <div className="record-container">
 
@@ -192,7 +196,11 @@ class Record extends Component {
                     <tbody >
                         {
                             this.state.records && this.state.records.map((record, i) => {
+<<<<<<< HEAD
                                 return <List blurEdit={this.blurEdit.bind(this)} pickerChange={this.pickerChange1.bind(this)} titleChange={this.titleChange1.bind(this)} amountChange={this.amountChange1.bind(this)} record={record} key={i} index={i} editItem={this.editItem.bind(this)} delItem={this.delItem.bind(this,i,record.id)} />
+=======
+                                return <List blurEdit={this.blurEdit.bind(this)} pickerChange={this.pickerChange1.bind(this)} titleChange={this.titleChange1.bind(this)} amountChange={this.amountChange1.bind(this)} record={record} key={i} index={i} editItem={this.editItem.bind(this)} delItem={this.delItem.bind(this)} />
+>>>>>>> 309521e0a337b7e732b389ff9f3de50faf16e7c7
                             })
                         }
                     </tbody>

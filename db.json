@@ -1,11 +1,37 @@
 {
   "records": [
     {
+<<<<<<< HEAD
       "date": "2020-01-14",
       "title": "1",
       "amount": "2",
       "id": 1,
       "isreadyonly": true
+=======
+      "date": "2020-01-12",
+      "title": "吃饭",
+      "amount": "-150",
+      "id": 1,
+      "isreadyonly": true
+    },
+    {
+      "date": "2020-01-12",
+      "title": "收入",
+      "amount": "50",
+      "id": 2
+    },
+    {
+      "date": "2020-01-16",
+      "title": "玩",
+      "amount": "100",
+      "id": 3
+    },
+    {
+      "date": "2020-01-18",
+      "title": "高铁票",
+      "amount": "-117",
+      "id": 4
+>>>>>>> 309521e0a337b7e732b389ff9f3de50faf16e7c7
     }
   ]
 }
